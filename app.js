@@ -9,6 +9,7 @@ consign()
     .include("./service")
     .include("./controller")
     .include("./middleware")
+    .include('./routes')
     .into(app);
 
 app.db = db;
