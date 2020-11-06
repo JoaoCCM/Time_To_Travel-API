@@ -1,12 +1,22 @@
-module.exports = app => {
-
-    const createUser = (data) => {
+module.exports = (app) => {
+    const createUser = async ({ name, email, password, cpf, is_admin }) => {
         try {
-            return 'User created'
+            const query = await app
+                .db("user")
+                .insert({ name, email, password, cpf, is_admin });
+            return { id: query[0], name, email };
         } catch (error) {
             throw error;
         }
-    }
+    };
 
-    return { createUser }
-}
+    const findUser = async (where) => {
+        try {
+            return await app.db("user").where(where).first();
+        } catch (e) {
+            throw e;
+        }
+    };
+
+    return { createUser, findUser };
+};
