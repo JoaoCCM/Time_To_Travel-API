@@ -10,13 +10,34 @@ module.exports = (app) => {
         }
     };
 
-    const findUser = async (where) => {
+    const findUser = async (where, select = "*") => {
         try {
-            return await app.db("user").where(where).first();
+            return await app.db("user").where(where).select(select).first();
         } catch (e) {
             throw e;
         }
     };
 
-    return { createUser, findUser };
+    const deleteUser = async (id) => {
+        try {
+            return await app.db("user").del().where({ id });
+        } catch (e) {
+            throw e;
+        }
+    };
+
+    const updateUser = async (id, { name, email, password, cpf, is_admin }) => {
+        try {
+            const query = await app
+                .db("user")
+                .update({ name, email, password, cpf, is_admin })
+                .where({ id });
+
+            return query;
+        } catch (e) {
+            throw e;
+        }
+    };
+
+    return { createUser, findUser, updateUser, deleteUser };
 };
