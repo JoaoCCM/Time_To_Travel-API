@@ -6,8 +6,10 @@ module.exports = (app) => {
         update,
     } = app.controller.userController;
 
+    const { authenticateToken } = app.middleware.authMiddleware;
+
     app.post("/user", create);
-    app.get("/user/:id", findUser);
+    app.get("/user", authenticateToken, findUser);
     app.delete("/user/:id", deleteUser);
     app.put("/user/:id", update);
 };
