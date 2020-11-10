@@ -35,7 +35,7 @@ module.exports = (app) => {
 
     const findUser = async (req, res) => {
         try {
-            const { id } = req.params;
+            const { id } = req.user.payload;
             const result = await findOne(id);
             return res.status(200).json(result);
         } catch (e) {
