@@ -8,6 +8,7 @@ module.exports = (app) => {
         limit,
         airline_id,
         status,
+        image
     }) => {
         try {
             const query = await app.db('flight').insert({
@@ -19,6 +20,7 @@ module.exports = (app) => {
                 limit,
                 airline_id,
                 status,
+                image
             })
 
             return {
@@ -31,6 +33,7 @@ module.exports = (app) => {
                 limit,
                 airline_id,
                 status,
+                image
             }
         } catch (e) {
             throw e
@@ -59,6 +62,10 @@ module.exports = (app) => {
         }
     }
 
+    const listOne = async(where={}, select='*') => {
+        return await app.db('flight').where(where).select(select).first();
+    }
+
     const updateFlight = async (
         id,
         {
@@ -70,6 +77,7 @@ module.exports = (app) => {
             limit,
             airline_id,
             status,
+            image
         }
     ) => {
         try {
@@ -84,6 +92,7 @@ module.exports = (app) => {
                     limit,
                     airline_id,
                     status,
+                    image
                 })
                 .where({ id })
 
@@ -101,5 +110,5 @@ module.exports = (app) => {
         }
     }
 
-    return { createFlight, list, updateFlight, removeFlight }
+    return { createFlight, list, updateFlight, removeFlight, listOne }
 }
