@@ -16,7 +16,7 @@ module.exports = app => {
 
             const total_price = Number(ticket.amount) * Number(ticket.price_ticket);
 
-            const final_value = data.child_amount && data.child_amount > 0 ? handleChild(data.child_amount, total_price) : 0;
+            const final_value = data.child_amount && data.child_amount > 0 ? handleChild(data.child_amount, total_price) : total_price;
 
             return { ticket_id: ticket.id, total: final_value }
 
@@ -27,7 +27,8 @@ module.exports = app => {
     }
 
     const handleChild = (child_amount, total_price) => {
-        const calc = (total_price * 0.3) * child_amount
+        const descount = (total_price * 0.3) * child_amount;
+        const calc = total_price - descount;
         return calc;
     }
 
