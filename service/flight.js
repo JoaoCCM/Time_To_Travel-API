@@ -4,6 +4,7 @@ module.exports = (app) => {
         list,
         updateFlight,
         removeFlight,
+        availableFlights
     } = app.repository.flightRepository
     const { findAirline } = app.repository.airlineRepository
 
@@ -33,6 +34,19 @@ module.exports = (app) => {
         }
     }
 
+    const listAvailableFlights = async () =>{
+        try{
+            const result = await availableFlights();
+            const shipment = result.map(m => m.shipment);
+            const destination = result.map(m => m.destination);
+
+            return [...shipment, ...destination]
+            return result;
+        }catch(e){
+            throw e;
+        }
+    }
+
     const updateOne = async (id, data) => {
         try {
             const result = await updateFlight(id, data)
@@ -53,5 +67,5 @@ module.exports = (app) => {
         }
     }
 
-    return { createOne, listFlight, updateOne, deleteOne }
+    return { createOne, listFlight, updateOne, deleteOne, listAvailableFlights }
 }

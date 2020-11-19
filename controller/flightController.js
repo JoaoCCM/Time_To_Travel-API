@@ -1,5 +1,5 @@
 module.exports = (app) => {
-    const { createOne, listFlight, updateOne, deleteOne } = app.service.flight
+    const { createOne, listFlight, updateOne, deleteOne, listAvailableFlights } = app.service.flight
 
     const create = async (req, res) => {
         try {
@@ -19,6 +19,16 @@ module.exports = (app) => {
         } catch (e) {
             const { message } = e
             return res.status(500).json(message)
+        }
+    }
+
+    const listAvailable = async (req, res) => {
+        try{
+            const result = await listAvailableFlights();
+            return res.status(200).json(result);
+        }catch(e){
+            const {message} = e;
+            return res.status(500).json(message);
         }
     }
 
@@ -43,5 +53,5 @@ module.exports = (app) => {
             return res.status(500).json(message)
         }
     }
-    return { create, list, update, remove }
+    return { create, list, update, remove, listAvailable }
 }

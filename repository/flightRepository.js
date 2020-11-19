@@ -66,6 +66,14 @@ module.exports = (app) => {
         return await app.db('flight').where(where).select(select).first();
     }
 
+    const availableFlights = async () => {
+        try{
+            return await app.db('flight').where('flight.limit', '>', 0).select('shipment', 'destination');
+        }catch(e){
+            throw e;
+        }
+    }
+
     const updateFlight = async (
         id,
         {
@@ -110,5 +118,5 @@ module.exports = (app) => {
         }
     }
 
-    return { createFlight, list, updateFlight, removeFlight, listOne }
+    return { createFlight, list, updateFlight, removeFlight, listOne, availableFlights }
 }
