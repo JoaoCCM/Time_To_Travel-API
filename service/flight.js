@@ -41,7 +41,7 @@ module.exports = (app) => {
             const destination = result.map(m => m.destination);
 
             return [...shipment, ...destination]
-            return result;
+            
         }catch(e){
             throw e;
         }
