@@ -48,7 +48,12 @@ Os protótipos foram desenvolvidos no Figma, e podem ser melhor consultados nos 
 
 ### Developers from IFSP-BRA
 
+<br/>
+
 **BP3001679**: Beatriz Miranda Ferreira da Silva.
+
 **BP3002314**: João Carlos Calixto Monteiro.
+
 **BP3001636**: Rodrigo Romano Gottardi de Moraes.
+
 **BP3001725**: Lucas Robbi.
