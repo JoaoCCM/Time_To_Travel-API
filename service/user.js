@@ -6,6 +6,7 @@ module.exports = (app) => {
         findUser,
         updateUser,
         deleteUser,
+        userTickets
     } = app.repository.userRepository;
 
     const genHash = async (password) => {
@@ -69,5 +70,28 @@ module.exports = (app) => {
         }
     };
 
-    return { createOne, deleteOne, updateOne, findOne };
+    const allTicketsOfUser = async (id) => {
+        try{
+            const result = await userTickets(id);
+            const data = result.map(m => {
+                let total_price = Number(m.amount_ticket) * Number(m.price_ticket);
+
+                let final_value = m.child_amount && m.child_amount > 0 ? handleChild(m.child_amount, total_price) : total_price;
+              
+                return { ...m, total_paid: final_value };
+            })
+            return data;
+        }catch(e){
+            throw e;
+        }
+    }
+
+    const handleChild = (child_amount, total_price) => {
+        const descount = (total_price * 0.3) * child_amount;
+        const calc = total_price - descount;
+        return calc;
+    }
+
+
+    return { createOne, deleteOne, updateOne, findOne, allTicketsOfUser };
 };

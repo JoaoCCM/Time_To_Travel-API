@@ -39,5 +39,19 @@ module.exports = (app) => {
         }
     };
 
-    return { createUser, findUser, updateUser, deleteUser };
+    const userTickets = async(id) => {
+        try{
+            return await app.db('ticket')
+            .join('flight', 'flight.id', 'ticket.flight_id')
+            .join('airline', 'airline.id', 'flight.airline_id')
+            .where('ticket.status', 'ativo')
+            .where('ticket.user_id', id)
+            .select('flight.*', 'airline.name as airline', 'airline.logo as airline_logo', 'ticket.amount as amount_ticket', 'ticket.price_ticket', 'ticket.child_amount')
+        }catch(e){
+            throw e;
+        }
+    }
+
+
+    return { createUser, findUser, updateUser, deleteUser, userTickets };
 };
