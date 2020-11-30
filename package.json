@@ -5,8 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node app.js"
   },
   "author": "Beatriz Miranda, Joao Carlos, Lucas Robbi, Rodrigo Gottardi",
   "license": "ISC",
@@ -21,10 +20,10 @@
     "knex": "^0.21.12",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "mysql2": "^2.2.5"
+    "mysql2": "^2.2.5",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
-    "dotenv": "^8.2.0",
     "nodemon": "^2.0.6"
   }
 }
