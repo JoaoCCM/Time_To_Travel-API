@@ -165,6 +165,8 @@
 
 </details>
 
+## Flight
+
 ### - **(POST) Create Flight -**
 
 <details>
@@ -211,8 +213,6 @@
 ```
 
 </details>
-
-## Flight
 
 ### - **(PUT) Update Flight -**
 
