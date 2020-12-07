@@ -8,6 +8,7 @@ module.exports = (app) => {
         limit,
         airline_id,
         status,
+        ticket_price,
         image
     }) => {
         try {
@@ -20,6 +21,7 @@ module.exports = (app) => {
                 limit,
                 airline_id,
                 status,
+                ticket_price,
                 image
             })
 
@@ -33,6 +35,7 @@ module.exports = (app) => {
                 limit,
                 airline_id,
                 status,
+                ticket_price,
                 image
             }
         } catch (e) {

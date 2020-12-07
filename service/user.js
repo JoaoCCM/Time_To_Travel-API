@@ -9,6 +9,8 @@ module.exports = (app) => {
         userTickets
     } = app.repository.userRepository;
 
+    const { listOne } = app.repository.flightRepository;
+
     const genHash = async (password) => {
         const hash = await bcrypt.hash(password, 10);
         const newPass = hash;
@@ -73,13 +75,15 @@ module.exports = (app) => {
     const allTicketsOfUser = async (id) => {
         try{
             const result = await userTickets(id);
-            const data = result.map(m => {
-                let total_price = Number(m.amount_ticket) * Number(m.price_ticket);
+            const data = await Promise.all(result.map(async m => {
+                const flight = await listOne({id: m.id});
+                
+                let total_price = Number(m.amount_ticket) * Number(flight.ticket_price);
 
                 let final_value = m.child_amount && m.child_amount > 0 ? handleChild(m.child_amount, total_price) : total_price;
               
                 return { ...m, total_paid: final_value };
-            })
+            }))
             return data;
         }catch(e){
             throw e;

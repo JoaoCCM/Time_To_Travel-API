@@ -14,7 +14,7 @@ module.exports = app => {
 
             await updateFlight(flight.id, { limit: flight.limit - ticket.amount })
 
-            const total_price = Number(ticket.amount) * Number(ticket.price_ticket);
+            const total_price = Number(ticket.amount) * Number(flight.ticket_price);
 
             const final_value = data.child_amount && data.child_amount > 0 ? handleChild(data.child_amount, total_price) : total_price;
 

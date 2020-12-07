@@ -1,10 +1,10 @@
 module.exports = app => {
 
-    const createTicket = async({flight_id, user_id, price_ticket, amount, child_amount, status}) => {
+    const createTicket = async({flight_id, user_id, amount, child_amount, status}) => {
         try{
-            const query = await app.db('ticket').insert({flight_id, user_id, price_ticket, amount, child_amount, status});
+            const query = await app.db('ticket').insert({flight_id, user_id, amount, child_amount, status});
 
-            return {id: query[0], flight_id, user_id, price_ticket, amount, child_amount, status}
+            return {id: query[0], flight_id, user_id, amount, child_amount, status}
         }catch(e){
             throw e;
         }
