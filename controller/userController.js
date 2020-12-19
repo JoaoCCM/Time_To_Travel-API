@@ -11,6 +11,16 @@ module.exports = (app) => {
         }
     };
 
+    const opa = async (req, res) => {
+        try {
+            // const result = await createOne(req.body);
+            return res.status(200).json({msg: 'opa'});
+        } catch (e) {
+            const { message } = e;
+            return res.status(500).json(message);
+        }
+    };
+
     const deleteUser = async (req, res) => {
         try {
             const { id } = req.user.payload;
@@ -55,5 +65,5 @@ module.exports = (app) => {
         }
     }
 
-    return { create, deleteUser, findUser, update, userTickets };
+    return { create, deleteUser, findUser, update, userTickets, opa };
 };
