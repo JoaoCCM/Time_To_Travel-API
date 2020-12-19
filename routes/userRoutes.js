@@ -5,7 +5,6 @@ module.exports = (app) => {
         findUser,
         update,
         userTickets,
-        opa
     } = app.controller.userController;
 
     const { authenticateToken } = app.middleware.authMiddleware;
@@ -15,5 +14,4 @@ module.exports = (app) => {
     app.get("/user/tickets", authenticateToken, userTickets);
     app.delete("/user", authenticateToken, deleteUser);
     app.put("/user", authenticateToken, update);
-    app.get('/opa', opa)
 };
