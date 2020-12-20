@@ -20,7 +20,7 @@ module.exports = (app) => {
 
     const deleteUser = async (id) => {
         try {
-            return await app.db("user").del().where({ id });
+            return await app.db("user").where({ id }).del();
         } catch (e) {
             throw e;
         }
