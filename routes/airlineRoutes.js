@@ -4,6 +4,7 @@ module.exports = (app) => {
         listAll,
         update,
         listOne,
+        listAirlineByName
     } = app.controller.airlineController
 
     const {
@@ -13,6 +14,7 @@ module.exports = (app) => {
 
     app.post('/airline', authenticateToken, authenticateAdmin, create)
     app.get('/airlines', authenticateToken, authenticateAdmin, listAll)
+    app.get('/airline/name', listAirlineByName)
     app.put('/airline/:id', authenticateToken, authenticateAdmin, update)
     app.get('/airline/:id', authenticateToken, authenticateAdmin, listOne)
 }

@@ -36,6 +36,14 @@ module.exports = (app) => {
         }
     }
 
+    const listByName = async(name) => {
+        try{
+            return await findAirline({ name }, '*', true)
+        }catch(e){
+            throw e;
+        }
+    }
+
     const updateOneAirline = async (id, data) => {
         try {
             const airline = await findAirline({ name: data.name }, 'name', true)
@@ -54,5 +62,6 @@ module.exports = (app) => {
         listAllAirlines,
         updateOneAirline,
         listOneAirline,
+        listByName
     }
 }

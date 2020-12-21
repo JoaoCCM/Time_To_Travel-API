@@ -4,6 +4,7 @@ module.exports = (app) => {
         listAllAirlines,
         updateOneAirline,
         listOneAirline,
+        listByName
     } = app.service.airline
 
     const create = async (req, res) => {
@@ -45,6 +46,16 @@ module.exports = (app) => {
             return res.status(500).json(message)
         }
     }
+    const listAirlineByName = async (req, res) => {
+        try {
+            const { name } = req.query
+            const airline = await listByName(name)
+            return res.status(200).json(airline)
+        } catch (e) {
+            const { message } = e
+            return res.status(500).json(message)
+        }
+    }
 
-    return { create, listAll, update, listOne }
+    return { create, listAll, update, listOne, listAirlineByName }
 }
