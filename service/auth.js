@@ -24,7 +24,7 @@ module.exports = (app) => {
 
                 const token = jwt.sign({ payload }, secret)
 
-                const data = { name: user.name, email: user.email, token }
+                const data = { name: user.name, email: user.email, token, type: user_type }
 
                 return res.status(200).json(data)
             })
