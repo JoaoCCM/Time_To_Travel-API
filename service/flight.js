@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = (app) => {
     const {
         createFlight,
@@ -27,8 +29,16 @@ module.exports = (app) => {
 
     const listFlight = async (dest, ship) => {
         try {
-            const result = await list(dest, ship)
-            return result
+            const result = await list(dest, ship);
+            
+            const data = result.map(m => {
+                const newDate = moment(m.ship_date).format('DD/MM/YYYY')
+                const newTime = moment(m.ship_time, 'HH:mm:ss').format('HH:mm')
+
+                return { ...m, ship_date: newDate, ship_time: newTime }
+            });
+
+            return data;
         } catch (e) {
             throw e
         }

@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const moment = require('moment');
 
 module.exports = (app) => {
     const {
@@ -82,7 +83,10 @@ module.exports = (app) => {
 
                 let final_value = m.child_amount && m.child_amount > 0 ? handleChild(m.child_amount, total_price) : total_price;
               
-                return { ...m, total_paid: final_value };
+                const newDate = moment(m.ship_date).format('DD/MM/YYYY')
+                const newTime = moment(m.ship_time, 'HH:mm:ss').format('HH:mm')
+
+                return { ...m, ship_date: newDate, ship_time: newTime, total_paid: final_value };
             }))
             return data;
         }catch(e){
