@@ -46,7 +46,7 @@ module.exports = (app) => {
             .join('airline', 'airline.id', 'flight.airline_id')
             .where('ticket.status', 'ativo')
             .where('ticket.user_id', id)
-            .select('flight.*', 'airline.name as airline', 'airline.logo as airline_logo', 'ticket.amount as amount_ticket', 'ticket.child_amount')
+            .select('flight.*', 'airline.name as airline', 'airline.logo as airline_logo', 'ticket.amount as amount_ticket', 'ticket.child_amount', 'ticket.id as ticket_id')
         }catch(e){
             throw e;
         }
