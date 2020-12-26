@@ -51,8 +51,9 @@ module.exports = (app) => {
     const updateOne = async (id, data) => {
         try {
             const result = await updateUser(id, data);
+            const passwordHashed = await genHash(data.password);
             if (!result) throw new Error("User not found");
-            return result;
+            return { ...result, password: passwordHashed };
         } catch (e) {
             throw e;
         }
