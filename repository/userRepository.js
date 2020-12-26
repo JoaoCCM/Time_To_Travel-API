@@ -33,7 +33,7 @@ module.exports = (app) => {
                 .update({ name, email, password, cpf, is_admin })
                 .where({ id });
 
-            return query;
+            return { id: query[0], name, email, password, cpf };
         } catch (e) {
             throw e;
         }

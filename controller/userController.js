@@ -36,7 +36,7 @@ module.exports = (app) => {
         try {
             const { id } = req.user.payload;
             const result = await updateOne(id, req.body);
-            return res.status(200).json({ message: "Updated" });
+            return res.status(200).json(result);
         } catch (e) {
             const { message } = e;
             return res.status(500).json(message);
