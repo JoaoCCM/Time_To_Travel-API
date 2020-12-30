@@ -43,14 +43,15 @@ module.exports = (app) => {
         }
     }
 
-    const list = async (dest, ship) => {
+    const list = async (dest, ship, date) => {
         try {
             let query = app.db('flight').select('*')
 
-            if (dest != null && ship != null)
+            if (dest != null && ship != null && date != null)
                 query = query
                     .where('destination', 'LIKE', `%${dest}%`)
                     .where('shipment', 'LIKE', `%${ship}%`)
+                    .where('ship_date', 'LIKE', `%${date}%`)
 
             if (dest != null)
                 query = query.where('destination', 'LIKE', `%${dest}%`)

@@ -27,9 +27,10 @@ module.exports = (app) => {
         }
     }
 
-    const listFlight = async (dest, ship) => {
+    const listFlight = async (dest, ship, date) => {
         try {
-            const result = await list(dest, ship);
+            const newDate = moment(date).format('YYYY-MM-DD');
+            const result = await list(dest, ship, newDate);
             
             const data = result.map(m => {
                 const newDate = moment(m.ship_date).format('DD/MM/YYYY')
