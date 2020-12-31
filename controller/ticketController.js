@@ -17,7 +17,7 @@ module.exports = app => {
         try{
             const { id } = req.params;
             const result = await updateOne(id);
-            return res.status(200).json({message: 'Canceld'});
+            return res.status(200).json({message: 'Canceled'});
         }catch(e){
             const {message} = e;
             return res.status(500).json(message);
