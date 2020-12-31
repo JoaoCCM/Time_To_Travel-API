@@ -13,8 +13,8 @@ module.exports = (app) => {
 
     const list = async (req, res) => {
         try {
-            const { dest, ship } = req.query
-            const flight = await listFlight(dest, ship)
+            const { dest = null, ship = null, date = null } = req.query
+            const flight = await listFlight(dest, ship, date)
             return res.status(200).json(flight)
         } catch (e) {
             const { message } = e
