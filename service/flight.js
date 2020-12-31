@@ -50,7 +50,9 @@ module.exports = (app) => {
             const shipment = result.map(m => m.shipment);
             const destination = result.map(m => m.destination);
 
-            return [...shipment, ...destination]
+            const listOfCities = [...shipment, ...destination]
+
+            return listOfCities.filter((city, index) => listOfCities.indexOf(city) === index)
             
         }catch(e){
             throw e;
