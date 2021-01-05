@@ -19,7 +19,9 @@ module.exports = (app) => {
             )
             if (!airline) throw new Error('Airline does not exist')
 
-            const result = await createFlight(data)
+            const formattedDate = moment(data.ship_date, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
+            const result = await createFlight({...data, ship_date: formattedDate})
 
             return result
         } catch (e) {
@@ -62,7 +64,8 @@ module.exports = (app) => {
 
     const updateOne = async (id, data) => {
         try {
-            const result = await updateFlight(id, data)
+            const formattedDate = moment(data.ship_date, 'DD/MM/YYYY').format('YYYY-MM-DD');
+            const result = await updateFlight(id, {...data, ship_date: formattedDate})
             if (!result) throw new Error('Flight not found')
             return result
         } catch (e) {
