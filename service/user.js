@@ -10,6 +10,8 @@ module.exports = (app) => {
         userTickets
     } = app.repository.userRepository;
 
+    const { removeTicket } = app.repository.ticketRepository;
+
     const { listOne } = app.repository.flightRepository;
 
     const genHash = async (password) => {
@@ -40,6 +42,7 @@ module.exports = (app) => {
 
     const deleteOne = async (id) => {
         try {
+            await removeTicket(id);
             const result = await deleteUser(id);
             if (!result) throw new Error("User not found");
             return result;

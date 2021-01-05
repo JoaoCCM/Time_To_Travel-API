@@ -22,5 +22,13 @@ module.exports = app => {
         }
     }
 
-        return { createTicket, updateTicket, findOne }
+    const removeTicket = async(id) => {
+        try{
+            return await app.db('ticket').where({user_id: id}).del();
+        }catch(e) {
+            throw e;
+        }
+    }
+
+        return { createTicket, updateTicket, findOne, removeTicket }
     }
